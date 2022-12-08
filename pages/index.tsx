@@ -7,13 +7,14 @@ const Home: NextPage = () => {
     "0x05B8aab3fd77580C29c6510d8C54D9E6be4262d2"
   );
 
-  const { data: nfts } = useNFTs(contract, {
+  const { data: nfts, isLoading } = useNFTs(contract, {
     start: 0,
     count: 10,
   });
 
   return (
     <div className={styles.container}>
+      {isLoading && <div>Loading...</div>}
       {nfts?.map((nft) => (
         <MediaRenderer
           key={nft.metadata.id}
